@@ -13,6 +13,16 @@ SCRIPT
     return $script
 end
 
+def install_hedvig()
+    $script = <<SCRIPT
+mkdir -p /var/opt/hedvig
+mkdir -p /var/log/hedvig
+cp -r /vagrant/hedvig /var/opt
+cp /var/opt/hedvig/hedvig_flocker_driver/config.xml /var/log/hedvig/config.xml
+SCRIPT
+    return $script
+end
+
 def install_ssh_keys()
     $script = <<SCRIPT
 cp /vagrant/bakedcerts/insecure_private_key /root/.ssh/id_rsa
