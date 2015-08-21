@@ -12,7 +12,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 
   config.vm.box = "volume-plugins-demo-vagrant-ubuntu-v2"
-  #config.vm.box_url = "http://storage.googleapis.com/experiments-clusterhq/vagrant-boxes/volume-plugins-demo-vagrant-ubuntu-v2.box"
+  config.vm.box_url = "http://storage.googleapis.com/experiments-clusterhq/vagrant-boxes/volume-plugins-demo-vagrant-ubuntu-v2.box"
 
   config.vm.define "node1" do |node1|
     node1.vm.network :private_network, :ip => "172.16.78.250"

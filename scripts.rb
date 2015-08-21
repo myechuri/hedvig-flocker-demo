@@ -18,7 +18,8 @@ def install_hedvig()
 mkdir -p /var/opt/hedvig
 mkdir -p /var/log/hedvig
 cp -r /vagrant/hedvig /var/opt
-cp /var/opt/hedvig/hedvig_flocker_driver/config.xml /var/log/hedvig/config.xml
+python /var/opt/hedvig/hedviglibs/setup.py install
+python /var/opt/hedvig/hedvig_flocker_driver/setup.py install
 SCRIPT
     return $script
 end

@@ -30,10 +30,6 @@ apt-get install -y linux-image-extra-$(uname -r)
 # apt-get -y install libc6-dev
 # apt-get -y install zfsutils
 
-# install Hedvig
-python /var/opt/hedvig/hedviglibs/setup.py install
-python /var/opt/hedvig/hedvig_flocker_driver/setup.py install
-
 # install docker 1.8
 stop docker.io
 # remove non-aufs storage drivers
