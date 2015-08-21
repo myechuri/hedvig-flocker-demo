@@ -24,6 +24,7 @@ sudo /opt/flocker/bin/python /var/opt/hedvig/hedviglibs/py/setup.py install
 sudo /opt/flocker/bin/python /var/opt/hedvig/hedvig_flocker_driver/setup.py install
 sudo  /opt/flocker/bin/pip  install eventlet
 sudo /opt/flocker/bin/pip  install repoze.lru
+sudo apt-get install open-iscsi
 SCRIPT
     return $script
 end
