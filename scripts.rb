@@ -19,13 +19,18 @@ mkdir -p /var/opt/hedvig
 mkdir -p /var/log/hedvig/logs
 cp -r /vagrant/hedvig /var/opt
 cp /var/opt/hedvig/hedvig_flocker_driver/config.xml /var/log/hedvig/config.xml
+cd /var/opt/hedvig/hedviglibs/
 sudo /opt/flocker/bin/python /var/opt/hedvig/hedviglibs/setup.py install
+cd /var/opt/hedvig/hedvig_flocker_driver/
 sudo /opt/flocker/bin/python /var/opt/hedvig/hedvig_flocker_driver/setup.py install
 sudo  /opt/flocker/bin/pip  install eventlet
 sudo /opt/flocker/bin/pip  install repoze.lru
 sudo apt-get install open-iscsi
 cd /var/opt/hedvig/hedviglibs/py
 sudo /opt/flocker/bin/python /var/opt/hedvig/hedviglibs/py/setup.py install
+sudo pip install git+https://github.com/clusterhq/unofficial-flocker-tools.git
+# cd /var/opt/hedvig/hedvig_flocker_driver/
+# sudo /opt/flocker/bin/trial hedvig_flocker_driver/test_hedvig.py
 SCRIPT
     return $script
 end
