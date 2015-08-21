@@ -68,8 +68,9 @@ cat <<EOF > /etc/flocker/agent.yml
    "hostname": "#{control_ip}"
    "port": 4524
 "dataset":
-   "backend": "zfs"
-   "pool": "flocker"
+   "backend": "hedvig_flocker_driver"
+   "username": "u2"
+   "password": "p3"
 EOF
 service flocker-container-agent restart
 service flocker-dataset-agent restart
