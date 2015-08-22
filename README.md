@@ -169,6 +169,10 @@ vagrant@node1:~$ docker run --rm \
 vagrant@node1:~$ exit
 ```
 
+Verify that Hedvig cluster sees new vdisk corresponding to ``simple:/data``:
+
+[![asciicast](https://github.com/myechuri/hedvig-volume-plugins-demo/blob/master/hedvig_images/vdisk.png)](https://github.com/myechuri/hedvig-volume-plugins-demo/blob/master/hedvig_images/vdisk.png)
+
 ### Step 6: Read the data from node2
 
 Now lets try to read the same data but from a totally different server!  Flocker will migrate the data in place before the container is run:
