@@ -1,8 +1,8 @@
 ## Volume Plugins Demo
 
-Migrating Docker data volume using new Docker 1.8 Volumes Plugin
+Migrating Docker data volume on Hedvig Storage using new Docker 1.8 Volumes Plugin
 
-[![asciicast](https://asciinema.org/a/24835.png)](https://asciinema.org/a/24835)
+[![asciicast](https://github.com/myechuri/hedvig-volume-plugins-demo/blob/master/HedvigController.png)](https://github.com/myechuri/hedvig-volume-plugins-demo/blob/master/HedvigController.png)
 
 ### The problem
 
@@ -58,8 +58,27 @@ First you need to install:
 The first step is to clone this repo and start the VMs:
 
 ```bash
-$ git clone https://github.com/clusterhq/volume-plugins-demo
-$ cd volume-plugins-demo
+$ git clone https://github.com/clusterhq/hedvig-volume-plugins-demo
+```
+
+Create subdir for Hedvig bits:
+
+```
+$ cd hedvig-volume-plugins-demo
+$ mkdir hedvig
+```
+
+Copy over ``hedvig_flocker_driver`` and ``hedviglibs`` into ``hedvig`` subdir:
+
+```
+Madhuris-MacBook-Pro-2:hedvig-volume-plugins-demo madhuriyechuri$ pwd
+/Users/madhuriyechuri/GitHub/hedvig-volume-plugins-demo
+Madhuris-MacBook-Pro-2:hedvig-volume-plugins-demo madhuriyechuri$ ls hedvig/
+hedvig_flocker_driver   hedviglibs
+
+Spin up 2 node Vagrant cluster:
+```
+$ cd hedvig-volume-plugins-demo
 $ vagrant up
 ```
 
@@ -91,6 +110,46 @@ vagrant@node1:~$ exit
 ```
 
 NOTE - the version of this binary is `1.8.0-dev` because this blog post was put together a few days before the official release.
+
+### Step 3: Check Flocker cluster health
+
+Check that Flocker control agent sees 2 nodes in the cluster:
+
+```
+vagrant@node1:~$ flocker-volumes --certs-path=/etc/flocker --control-service=172.16.78.250 --user=plugin list-nodes
+SERVER     ADDRESS       
+8a92f64e   172.16.78.250 
+c109798f   172.16.78.251 
+
+vagrant@node1:~$ 
+```
+
+Check that Flocker control agent sees zero datasets (volumes) in the cluster:
+
+```
+vagrant@node1:~$ flocker-volumes --certs-path=/etc/flocker --control-service=172.16.78.250 --user=plugin list
+DATASET                                SIZE      METADATA   STATUS     SERVER     
+vagrant@node1:~$
+```
+
+### Step 4: Check Hedvig cluster health
+
+Run the following sanity checks on both ``node1`` and ``node2``:
+
+```
+vagrant@node1:~$ sudo /var/opt/hedvig/hedvig_flocker_driver/hedvig.iscsi login woodcvm1
+vagrant@node1:~$ sudo /var/opt/hedvig/hedvig_flocker_driver/hedvig.iscsi logout woodcvm1
+Logging out of session [sid: 1, target: iqn.2012-05.com.hedvig:storage.woodcvm1.hedviginc.com-1, portal: 172.22.21.29,3260]
+Logout of [sid: 1, target: iqn.2012-05.com.hedvig:storage.woodcvm1.hedviginc.com-1, portal: 172.22.21.29,3260] successful.
+Logging out of session [sid: 2, target: iqn.2012-05.com.hedvig:storage.woodcvm1.hedviginc.com-2, portal: 172.22.21.29,3260]
+Logout of [sid: 2, target: iqn.2012-05.com.hedvig:storage.woodcvm1.hedviginc.com-2, portal: 172.22.21.29,3260] successful.
+vagrant@node1:~$ sudo ls -la /dev/disk/by-label
+total 0
+drwxr-xr-x 2 root root  60 Aug 21 23:52 .
+drwxr-xr-x 5 root root 100 Aug 22 00:17 ..
+lrwxrwxrwx 1 root root  10 Aug 21 23:52 cloudimg-rootfs -> ../../sda1
+vagrant@node1:~$ 
+```
 
 ### Step 3: Write some data to node1
 
