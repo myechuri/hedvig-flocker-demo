@@ -2,7 +2,7 @@
 
 Migrating Docker data volume on Hedvig Storage using new Docker 1.8 Volumes Plugin
 
-[![asciicast](https://github.com/myechuri/hedvig-volume-plugins-demo/blob/master/HedvigController.png)](https://github.com/myechuri/hedvig-volume-plugins-demo/blob/master/HedvigController.png)
+[![asciicast](https://github.com/myechuri/hedvig-volume-plugins-demo/blob/master/hedvig_images/HedvigController.png)](https://github.com/myechuri/hedvig-volume-plugins-demo/blob/master/hedvig_images/HedvigController.png)
 
 ### The problem
 
@@ -151,6 +151,8 @@ lrwxrwxrwx 1 root root  10 Aug 21 23:52 cloudimg-rootfs -> ../../sda1
 vagrant@node1:~$ 
 ```
 
+Make sure Hedvig Virtual Disk accounting shows zero vdisks:
+[![asciicast](https://github.com/myechuri/hedvig-volume-plugins-demo/blob/master/hedvig_images/ZeroVdisk.png)](https://github.com/myechuri/hedvig-volume-plugins-demo/blob/master/hedvig_images/ZeroVdisk.png)
 ### Step 3: Write some data to node1
 
 Now we use the `--volume-driver flocker` flag to write some data to a Flocker volume:
