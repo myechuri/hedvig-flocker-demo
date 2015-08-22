@@ -75,6 +75,7 @@ Madhuris-MacBook-Pro-2:hedvig-volume-plugins-demo madhuriyechuri$ pwd
 /Users/madhuriyechuri/GitHub/hedvig-volume-plugins-demo
 Madhuris-MacBook-Pro-2:hedvig-volume-plugins-demo madhuriyechuri$ ls hedvig/
 hedvig_flocker_driver   hedviglibs
+```
 
 Spin up 2 node Vagrant cluster:
 ```
@@ -130,6 +131,7 @@ Check that Flocker control agent sees zero datasets (volumes) in the cluster:
 vagrant@node1:~$ flocker-volumes --certs-path=/etc/flocker --control-service=172.16.78.250 --user=plugin list
 DATASET                                SIZE      METADATA   STATUS     SERVER     
 vagrant@node1:~$
+
 ```
 
 ### Step 4: Check Hedvig cluster health
@@ -153,7 +155,8 @@ vagrant@node1:~$
 
 Make sure Hedvig Virtual Disk accounting shows zero vdisks:
 [![asciicast](https://github.com/myechuri/hedvig-volume-plugins-demo/blob/master/hedvig_images/ZeroVdisk.png)](https://github.com/myechuri/hedvig-volume-plugins-demo/blob/master/hedvig_images/ZeroVdisk.png)
-### Step 3: Write some data to node1
+
+### Step 5: Write some data to node1
 
 Now we use the `--volume-driver flocker` flag to write some data to a Flocker volume:
 
@@ -166,7 +169,7 @@ vagrant@node1:~$ docker run --rm \
 vagrant@node1:~$ exit
 ```
 
-### Step 4: Read the data from node2
+### Step 6: Read the data from node2
 
 Now lets try to read the same data but from a totally different server!  Flocker will migrate the data in place before the container is run:
 
@@ -180,7 +183,7 @@ hello
 vagrant@node2:~$ exit
 ```
 
-### Step 5: Run the application on node1
+### Step 7: Run the application on node1
 
 Next we will use Docker Compose to spin up our web application on the first node:
 
@@ -191,7 +194,7 @@ vagrant@node1:~$ docker-compose up -d
 vagrant@node1:~$ exit
 ```
 
-### Step 6: Load the application in a browser
+### Step 8: Load the application in a browser
 
 Now we can fire up a web-browser and visit:
 
@@ -205,7 +208,7 @@ You should see a blank page - try clicking around to create some Moby Docks!
 
 *figure 2. A screenshot of the application running in a browser*
 
-### Step 7: Stop the application on node1
+### Step 9: Stop the application on node1
 
 Next lets stop the application running on node1:
 
@@ -216,7 +219,7 @@ vagrant@node1:~$ docker-compose stop
 vagrant@node1:~$ exit
 ```
 
-### Step 8: Run the application on node2
+### Step 10: Run the application on node2
 
 Now the cool part - lets SSH to node2 and use `docker-compose` just like we did on node1.  The difference is this time - Flocker will migrate the data we created on node1 alongside the database container:
 
@@ -227,7 +230,7 @@ vagrant@node2:~$ docker-compose up -d
 vagrant@node2:~$ exit
 ```
 
-### Step 9: Load the application in a browser
+### Step 11: Load the application in a browser
 
 Now we can fire up a web-browser and visit:
 
@@ -240,7 +243,7 @@ This time - we should see the same data we created on node1.  This means that do
 NOTE: The URL is different this time because we have moved the application to node2.  I have kept DNS and load-balancing out of this demo to keep it as simple and to the point as possible.
 
 
-### Step 10: Confirm the application is running on node2
+### Step 12: Confirm the application is running on node2
 
 As a final confirmation that our application is migrated we can ask Docker to list the containers it is running on node2:
 
