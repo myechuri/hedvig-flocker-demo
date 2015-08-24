@@ -262,6 +262,34 @@ CONTAINER ID        IMAGE                            COMMAND                  CR
 vagrant@node2:~$ exit
 ```
 
+## Debugging
+
+### Flocker logs
+
+### Hedvig logs
+
+Hedvig Flocker driver logs are available at the following location inside Vagrant VMs: 
+```bash
+vagrant@node1:/var/log/hedvig/logs$ tail /var/log/hedvig/logs/flocker-driver.log 
+2015-08-21 23:55:47,748:2664:DEBUG:ThriftHandleMgr:getConnection:159:getConnection:host:wood1.hedviginc.com:port:15000:ConnectionType:pages
+2015-08-21 23:55:47,748:2664:DEBUG:ThriftHandleMgr:getConnection:169:getConnection[reuse connection]:host:wood1.hedviginc.com:port:15000:ConnectionType:pages
+2015-08-21 23:55:47,756:2664:DEBUG:HedvigBlockDeviceAPI:hedvigDoIscsiDiscovery:126:hedvigDoIscsiDiscovery: tgtHost:woodcvm1.hedviginc.com:lunNum:1
+2015-08-21 23:55:47,758:2664:DEBUG:HedvigBlockDeviceAPI:hedvigDoIscsiDiscovery:126:hedvigDoIscsiDiscovery: tgtHost:woodcvm1.hedviginc.com:lunNum:1
+```
+
+Hedvig Flocker driver metrics are available at the following location inside Vagrant VMs:
+
+```bash
+vagrant@node1:/var/log/hedvig/logs$ tail /var/log/hedvig/logs/flocker-driver-metrics.log 
+2664:listVDisks:Average:10.85:stats:{'max': 15L, 3: 175, 4: 97}
+2664:addLun:Average:128.00:stats:{'max': 93L, 7: 1}
+2664:createVirtualDisk:Average:64.00:stats:{'max': 33L, 6: 1}
+2664:getTgtInstance:Average:13.52:stats:{'max': 27L, 3: 86, 4: 184, 5: 1}
+2664:getLun:Average:8.38:stats:{'max': 13L, 3: 258, 4: 13}
+2664:describeVDisk:Average:9.53:stats:{'max': 24L, 3: 224, 4: 46, 5: 2}
+2664:addAccess:Average:32.00:stats:{'max': 28L, 5: 2}
+```
+
 ## Conclusion
 
 Using this very basic demo, we were able to show that the plugin mechanism in Docker 1.8 is able to integrate with both Flocker and Docker Compose allowing us to migrate a stateful web application from one server to another.
