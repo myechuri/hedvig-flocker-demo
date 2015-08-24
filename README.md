@@ -262,9 +262,20 @@ CONTAINER ID        IMAGE                            COMMAND                  CR
 vagrant@node2:~$ exit
 ```
 
-## Debugging
+## Troubleshooting
+
+Start with Flocker logs.
 
 ### Flocker logs
+
+Start with Flocker logs: ``flocker-control.log``, followed by ``flocker-dataset-agent.log`` and ``flocker-container-agent.log``.
+
+```bash
+vagrant@node1:/var/log/hedvig/logs$ ls /var/log/flocker/
+flocker-container-agent.log  flocker-control.log  flocker-dataset-agent.log
+```
+
+If Flocker logs look ok, move on to Hedvig logs.
 
 ### Hedvig logs
 
