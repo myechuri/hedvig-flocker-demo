@@ -165,7 +165,6 @@ vagrant@node1:~$ docker run --rm \
     --volume-driver flocker \
     -v simple:/data \
     busybox sh -c "echo hello > /data/file.txt"
-vagrant@node1:~$ exit
 ```
 
 Verify that Hedvig cluster sees new vdisk corresponding to ``simple:/data``:
