@@ -58,7 +58,7 @@ First you need to install:
 The first step is to clone this repo and start the VMs:
 
 ```bash
-$ git clone https://github.com/clusterhq/hedvig-volume-plugins-demo
+$ git clone https://github.com/myechuri/hedvig-flocker-demo.git
 ```
 
 Create subdir for Hedvig bits:
