@@ -107,7 +107,6 @@ Server:
  Built:        Mon Aug  3 18:04:07 UTC 2015
  OS/Arch:      linux/amd64
 
-vagrant@node1:~$ exit
 ```
 
 NOTE - the version of this binary is `1.8.0-dev` because this blog post was put together a few days before the official release.
