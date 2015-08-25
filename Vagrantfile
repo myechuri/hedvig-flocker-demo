@@ -16,6 +16,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.define "node1" do |node1|
     node1.vm.network :private_network, :ip => "172.16.78.250"
+    #node1.vm.network "public_network", ip: "192.168.0.17"
     node1.vm.hostname = "node1"
     node1.vm.provider "virtualbox" do |v|
       v.memory = 1536
@@ -37,6 +38,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.define "node2" do |node2|
     node2.vm.network :private_network, :ip => "172.16.78.251"
+    #node2.vm.network "public_network", ip: "192.168.0.18"
     node2.vm.hostname = "node2"
     node2.vm.provider "virtualbox" do |v|
       v.memory = 1536

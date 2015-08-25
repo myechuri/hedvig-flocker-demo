@@ -68,7 +68,7 @@ $ cd hedvig-volume-plugins-demo
 $ mkdir hedvig
 ```
 
-Copy over ``hedvig_flocker_driver`` and ``hedviglibs`` into ``hedvig`` subdir:
+Copy over ``hedvig_flocker_driver`` and ``hedviglibs`` from https://github.com/hedvig/hedvig-flocker-driver into ``hedvig`` subdir:
 
 ```
 Madhuris-MacBook-Pro-2:hedvig-volume-plugins-demo madhuriyechuri$ pwd
